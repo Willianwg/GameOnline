@@ -4,10 +4,36 @@
         <meta charset="utf-8">
         <title>My Game</title>
         <style>
-    
+            
+                #screen {
+                    border: 1px solid black;
+                }
+            
         </style>
     </head>
     <body>
         <p>Test</p>
+        <canvas id="screen" width="500" height="500"></canvas>
+
+        <script>
+            const screen = document.getElementById('screen');
+            const context = screen.getContext('2d');
+
+            class Box {
+                color='red';
+                height=10;
+                width=10;
+                positionX=0;
+                positionY=0;
+            }
+
+            const box = new Box();
+
+
+            context.fillStyle = box.color;
+            context.fillRect(box.positionX,box.positionY,box.width,box.height);
+
+
+        </script>
     </body>
 </html>
