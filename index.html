@@ -6,32 +6,56 @@
         <style>
             
                 #screen {
-                    border: 1px solid black;
+                    border: 10px solid black;
+                    image-rendering: pixelated;
+                    image-rendering: crisp-edges;
+                    image-rendering: -moz-crisp-edges;
+                    width:400px;
+                    height:400px;
                 }
             
         </style>
     </head>
     <body>
         <p>Test</p>
-        <canvas id="screen" width="500" height="500"></canvas>
+        <canvas id="screen" width="20" height="20"></canvas>
 
         <script>
             const screen = document.getElementById('screen');
             const context = screen.getContext('2d');
 
-            class Box {
-                color='red';
-                height=10;
-                width=10;
-                positionX=0;
-                positionY=0;
+            context.fillStyle='black';
+            context.fillRect(5,5,1,1);
+
+            const game = {
+                players:{
+                 'player1':{ x:1, y:1},
+                 'player2':{ x:20, y:20},
+                },
+                fruits:{
+                 'fruit1':{ x:1, y:8},
+                 'fruit2':{ x:6, y:9},
+                }
             }
 
-            const box = new Box();
+            renderScreen();
 
+            function renderScreen(){
+                for(playerId in game.players){
+                    const player = game.players[playerId];
 
-            context.fillStyle = box.color;
-            context.fillRect(box.positionX,box.positionY,box.width,box.height);
+                    context.fillStyle='black';
+                    context.fillRect(player.x,player.y,1,1);
+                }
+
+                for(fruitId in game.fruits){
+                    const fruit = game.fruits[fruitId];
+
+                    context.fillStyle='green';
+                    context.fillRect(fruit.x,fruit.y,1,1);
+                }
+
+            }
 
 
         </script>
