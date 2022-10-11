@@ -38,6 +38,12 @@
                 }
             }
 
+            document.addEventListener('keydown', handleKeyDown);
+
+            function handleKeyDown(){
+                console.log('did it!');
+            }
+
             renderScreen();
 
             function renderScreen(){
