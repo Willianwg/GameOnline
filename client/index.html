@@ -41,14 +41,18 @@
                     const { playerId, keyPressed } = command;
                     const player = state.players[playerId];
 
-                    const test = {
+                    const moves = {
                         'ArrowUp':()=> player.y>0 ? player.y-=1:false,
                         'ArrowDown':()=> player.y<screen.height-1 ? player.y+=1 :false,
                         'ArrowLeft':()=> player.x>0 ? player.x-=1:false,
                         'ArrowRight':()=> player.x<screen.width-1? player.x+=1 :false,
                     }
 
-                    test[keyPressed]();
+                    const moveFunction = moves[keyPressed];
+
+                    if(moveFunction){
+                        moveFunction();
+                    }
 
                 }
 
