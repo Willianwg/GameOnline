@@ -39,12 +39,13 @@
                 
                 function movePlayer(command){
                     const { playerId, keyPressed } = command;
-                    
+                    const player = state.players[playerId];
+
                     const test = {
-                        'ArrowUp':()=> state.players[playerId].y-=1,
-                        'ArrowDown':()=> state.players[playerId].y+=1,
-                        'ArrowLeft':()=> state.players[playerId].x-=1,
-                        'ArrowRight':()=> state.players[playerId].x+=1,
+                        'ArrowUp':()=> player.y>0 ? player.y-=1:false,
+                        'ArrowDown':()=> player.y<screen.height-1 ? player.y+=1 :false,
+                        'ArrowLeft':()=> player.x>0 ? player.x-=1:false,
+                        'ArrowRight':()=> player.x<screen.width-1? player.x+=1 :false,
                     }
 
                     test[keyPressed]();
