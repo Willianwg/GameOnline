@@ -27,14 +27,21 @@
             
             function createGame(){
                 const state = {
-                    players:{
-                     'player1':{ x:1, y:1},
-                     'player2':{ x:17, y:9},
-                    },
-                    fruits:{
-                     'fruit1':{ x:1, y:8},
-                     'fruit2':{ x:6, y:9},
-                    }
+                    players:{},
+                    fruits:{}
+                }
+
+                function addPlayer(command){
+                    const playerId = command.playerId;
+                    const playerX = command.playerX;
+                    const playerY = command.playerY;
+
+                    state.players[playerId] = { x:playerX, y:playerY };
+                }
+
+                function removePlayer(command){
+                    const playerId = command.playerId;
+                    delete state.players[playerId]
                 }
                 
                 function movePlayer(command){
@@ -42,10 +49,10 @@
                     const player = state.players[playerId];
 
                     const moves = {
-                        'ArrowUp':()=> player.y>0 ? player.y-=1:false,
-                        'ArrowDown':()=> player.y<screen.height-1 ? player.y+=1 :false,
-                        'ArrowLeft':()=> player.x>0 ? player.x-=1:false,
-                        'ArrowRight':()=> player.x<screen.width-1? player.x+=1 :false,
+                        ArrowUp:()=> player.y>0 ? player.y-=1:false,
+                        ArrowDown:()=> player.y<screen.height-1 ? player.y+=1 :false,
+                        ArrowLeft:()=> player.x>0 ? player.x-=1:false,
+                        ArrowRight:()=> player.x<screen.width-1? player.x+=1 :false,
                     }
 
                     const moveFunction = moves[keyPressed];
@@ -57,6 +64,8 @@
                 }
 
                 return {
+                    addPlayer,
+                    removePlayer,
                     movePlayer,
                     state
                 }
