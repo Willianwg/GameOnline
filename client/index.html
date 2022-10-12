@@ -59,6 +59,7 @@
 
                     if( player && moveFunction){
                         moveFunction();
+                        checkFruitCollision(player);
                     }
 
                 }
@@ -76,6 +77,16 @@
                     delete state.fruits[fruitId]
                 }
 
+                function checkFruitCollision (player){
+                        for(const fruitId in state.fruits){
+                            const fruit = state.fruits[fruitId];
+
+                            if( player.x === fruit.x && player.y === fruit.y){
+                                console.log('bateu');
+                                removeFruit({ fruitId })
+                            }
+                        }
+                }
                 return {
                     addPlayer,
                     removePlayer,
