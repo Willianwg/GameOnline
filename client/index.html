@@ -1,5 +1,4 @@
 <html>
-    <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
         <title>My Game</title>
@@ -15,15 +14,14 @@
                 }
             
         </style>
-        <script src="./scripts/keyboardListener.js"></script>
        
     </head>
     <body>
         <p>Test</p>
         <canvas id="screen" width="20" height="20"></canvas>
 
-        <script>
-        
+        <script type="module">
+        import createKeyboardListener from "./scripts/keyboardListener.js";
 
             const screen = document.getElementById('screen');
             const context = screen.getContext('2d');
@@ -57,6 +55,7 @@
                         ArrowDown:()=> player.y<screen.height-1 ? player.y+=1 :false,
                         ArrowLeft:()=> player.x>0 ? player.x-=1:false,
                         ArrowRight:()=> player.x<screen.width-1? player.x+=1 :false,
+                        b:()=> game.addFruit({fruitId:'abc', fruitX:9, fruitY:9})
                     }
 
                     const moveFunction = moves[keyPressed];
@@ -102,6 +101,7 @@
             }
 
             const game = createGame();
+            game.addPlayer({ playerId:'player1', playerX:4, playerY:8});
             const keyboardListener = createKeyboardListener();
             keyboardListener.subscribe(game.movePlayer);
             
