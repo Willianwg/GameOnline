@@ -15,12 +15,16 @@
                 }
             
         </style>
+        <script src="./scripts/keyboardListener.js"></script>
+       
     </head>
     <body>
         <p>Test</p>
         <canvas id="screen" width="20" height="20"></canvas>
 
         <script>
+        
+
             const screen = document.getElementById('screen');
             const context = screen.getContext('2d');
 
@@ -101,34 +105,7 @@
             const keyboardListener = createKeyboardListener();
             keyboardListener.subscribe(game.movePlayer);
             
-            function createKeyboardListener(){
-                const state = {
-                    observers:[]
-                }
-                function subscribe(observerFunction){
-                    state.observers.push(observerFunction);
-                }
-
-                function notifyAll(command){
-                    state.observers.map( observerFunction => observerFunction(command) );
-                }
-
-                document.addEventListener('keydown', handleKeyDown);
-    
-                function handleKeyDown(event){
-                    const command = {
-                        playerId:'player1',
-                        keyPressed:event.key
-                    }
-                  
-                    notifyAll(command);
-                }
-
-                return {
-                    subscribe
-                }
-            }
-
+            
 
             renderScreen();
 
