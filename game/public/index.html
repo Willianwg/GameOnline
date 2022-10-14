@@ -15,7 +15,7 @@
                 }
             
         </style>
-       
+       <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
         <p>Test</p>
@@ -34,6 +34,11 @@
 
             renderScreen(screen, game, requestAnimationFrame);
 
+            const socket = io();
+
+            socket.on('connect', ()=>{
+                console.log('inside html');
+            })
 
         </script>
     </body>
