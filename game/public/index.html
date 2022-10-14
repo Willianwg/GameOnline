@@ -37,7 +37,11 @@
             const socket = io();
 
             socket.on('connect', ()=>{
-                console.log('inside html');
+                console.log(socket.id);
+            })
+
+            socket.on('setup', (state)=>{
+              game.setState(state);
             })
 
         </script>

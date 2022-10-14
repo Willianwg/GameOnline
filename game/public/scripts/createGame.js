@@ -8,6 +8,10 @@ export default function createGame(){
         }
     }
 
+    function setState(newState){
+        Object.assign(state, newState);
+    }
+
     function addPlayer(command){
         const playerId = command.playerId;
         const playerX = command.playerX;
@@ -70,6 +74,7 @@ export default function createGame(){
         addFruit,
         removeFruit,
         movePlayer,
+        setState,
         state
     }
 }

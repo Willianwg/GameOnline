@@ -14,7 +14,9 @@ game.addPlayer({ playerId:'player1', playerX:4, playerY:8});
 game.addFruit({ fruitId:'fruit1', fruitX:12, fruitY:16});
 
 sockets.on('connection', (socket)=>{
-    console.log('did it!');
+    console.log(socket.id);
+
+    socket.emit('setup', game.state);
 })
 
 server.listen(3333);
