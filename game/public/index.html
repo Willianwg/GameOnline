@@ -26,22 +26,30 @@
         import createGame from './scripts/createGame.js';
         import renderScreen from './scripts/renderScreen.js';
 
-            const screen = document.getElementById('screen');
-            
             const game = createGame();
             const keyboardListener = createKeyboardListener(document);
-            keyboardListener.subscribe(game.movePlayer);
-
-            renderScreen(screen, game, requestAnimationFrame);
 
             const socket = io();
 
             socket.on('connect', ()=>{
-                console.log(socket.id);
+                const playerId = socket.id;
+
+                const screen = document.getElementById('screen');
+                renderScreen(screen, game, requestAnimationFrame, playerId);
             })
 
             socket.on('setup', (state)=>{
               game.setState(state);
+              keyboardListener.registerPlayerId(socket.id);
+              keyboardListener.subscribe(game.movePlayer);
+            })
+
+            socket.on('addPlayer', (command)=>{
+                game.addPlayer(command);
+            })
+
+            socket.on('removePlayer', (command)=>{
+                game.removePlayer(command);
             })
 
         </script>
