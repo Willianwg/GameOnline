@@ -12,7 +12,6 @@ app.use(express.static('public'));
 const game = createGame();
 
 game.subscribe((command)=>{
-
     sockets.emit(command.type, command);
 })
 
@@ -26,6 +25,14 @@ sockets.on('connection', (socket)=>{
 
     socket.on('disconnect', ()=>{
         game.removePlayer({ playerId });
+    })
+
+    socket.on('movePlayer', (command)=>{
+        command.playerId = playerId;
+        command.type = 'movePlayer';
+
+        game.movePlayer(command); 
+       
     })
 })
 

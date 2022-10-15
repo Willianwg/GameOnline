@@ -48,6 +48,7 @@ export default function createGame(){
     }
     
     function movePlayer(command){
+        notifyAll(command);
         const { playerId, keyPressed } = command;
         const player = state.players[playerId];
 

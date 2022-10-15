@@ -19,6 +19,7 @@ export default function createKeyboardListener(document){
 
     function handleKeyDown(event){
         const command = {
+            type:'movePlayer',
             playerId:state.playerId,
             keyPressed:event.key
         }

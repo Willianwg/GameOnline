@@ -42,6 +42,11 @@
               game.setState(state);
               keyboardListener.registerPlayerId(socket.id);
               keyboardListener.subscribe(game.movePlayer);
+
+              keyboardListener.subscribe((command)=>{
+                socket.emit(command.type, command)
+              })
+
             })
 
             socket.on('addPlayer', (command)=>{
@@ -51,6 +56,15 @@
             socket.on('removePlayer', (command)=>{
                 game.removePlayer(command);
             })
+
+            socket.on('movePlayer', (command)=>{
+                const { playerId } = command;
+
+                if(playerId !== socket.id){
+                    game.movePlayer(command);
+                }
+            })
+
 
         </script>
     </body>
