@@ -1,0 +1,1 @@
+A simple multiplayer game using html, node and websockets.

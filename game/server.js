@@ -36,4 +36,4 @@ sockets.on('connection', (socket)=>{
     })
 })
 
-server.listen(3333);
+server.listen(3000);
